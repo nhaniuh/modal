@@ -43,16 +43,10 @@ clos.addEventListener("click", function(e) {
     modal.classList.remove("modal2");
 })
 let inp = /^FIT-\d{5}$/
-inpmsnv.addEventListener("focus", function(e) {
-    if (!inp.test(e.target.value)) {
-        inpmsnv.style.border = "1px solid red";
-        loimsnv.classList.add("loi");
-    } else {
-        inpmsnv.style.border = "black";
-        loimsnv.classList.remove("loi");
-    }
-})
-inpmsnv.addEventListener("input", function(e) {
+
+function msnv() {
+
+    inpmsnv.addEventListener("focus", function(e) {
         if (!inp.test(e.target.value)) {
             inpmsnv.style.border = "1px solid red";
             loimsnv.classList.add("loi");
@@ -61,67 +55,67 @@ inpmsnv.addEventListener("input", function(e) {
             loimsnv.classList.remove("loi");
         }
     })
-    // let test2 = inpname.value.trim();
-let test3 = /^[A-Z][a-z à-ỵ]+(\s[A-Z][a-z à-ỵ]+)+$/
-inpname.addEventListener("focus", function(e) {
-    if (!test3.test(e.target.value)) {
-        inpname.style.border = "1px solid red";
-        loiname.classList.add("loi");
-    } else {
-        inpname.style.border = "1px solid black";
-        loiname.classList.remove("loi");
-    }
-})
-inpname.addEventListener("input", function(e) {
-    if (!test3.test(e.target.value)) {
-        inpname.style.border = "1px solid red";
-        loiname.classList.add("loi");
-    } else {
-        inpname.style.border = "1px solid black";
-        loiname.classList.remove("loi");
-    }
-})
-date.addEventListener("focus", function() {
-    let test4 = date.value.trim();
-    let test5 = parseInt(test4.slice(0, 4));
-    if (test4 === "" || test5 > 2022) {
-        date.style.border = "1px solid red";
-        loidate.classList.add("loi");
-    } else {
-        date.style.border = "1px solid black";
-        loidate.classList.remove("loi");
-    }
-})
-date.addEventListener("input", function() {
-    let test4 = date.value.trim();
-    let test5 = parseInt(test4.slice(0, 4));
-    if (test4 === "" || test5 > 2022) {
-        date.style.border = "1px solid red";
-        loidate.classList.add("loi");
-    } else {
-        date.style.border = "1px solid black";
-        loidate.classList.remove("loi");
-    }
-})
+    inpmsnv.addEventListener("input", function(e) {
+        if (!inp.test(e.target.value)) {
+            inpmsnv.style.border = "1px solid red";
+            loimsnv.classList.add("loi");
+        } else {
+            inpmsnv.style.border = "black";
+            loimsnv.classList.remove("loi");
+        }
+    })
+
+}
+// let test2 = inpname.value.trim();
+function tennv() {
+    let test3 = /^[A-Z][a-z à-ỵ]+(\s[A-Z][a-z à-ỵ]+)+$/
+    inpname.addEventListener("focus", function(e) {
+        if (!test3.test(e.target.value)) {
+            inpname.style.border = "1px solid red";
+            loiname.classList.add("loi");
+        } else {
+            inpname.style.border = "1px solid black";
+            loiname.classList.remove("loi");
+        }
+    })
+    inpname.addEventListener("input", function(e) {
+        if (!test3.test(e.target.value)) {
+            inpname.style.border = "1px solid red";
+            loiname.classList.add("loi");
+        } else {
+            inpname.style.border = "1px solid black";
+            loiname.classList.remove("loi");
+        }
+    })
+}
+
+function ngay() {
+
+    date.addEventListener("focus", function() {
+        let test4 = date.value.trim();
+        let test5 = parseInt(test4.slice(0, 4));
+        if (test4 === "" || test5 > 2022) {
+            date.style.border = "1px solid red";
+            loidate.classList.add("loi");
+        } else {
+            date.style.border = "1px solid black";
+            loidate.classList.remove("loi");
+        }
+    })
+    date.addEventListener("input", function() {
+        let test4 = date.value.trim();
+        let test5 = parseInt(test4.slice(0, 4));
+        if (test4 === "" || test5 > 2022) {
+            date.style.border = "1px solid red";
+            loidate.classList.add("loi");
+        } else {
+            date.style.border = "1px solid black";
+            loidate.classList.remove("loi");
+        }
+    })
+}
 plus.addEventListener("click", function(e) {
     e.preventDefault();
-    // let test = inpmsnv.value.trim();
-    // let test1 = /^FIT-\d{5}$/
-    // let test2 = inpname.value.trim();
-    // let test3 = /^[A-Z][a-z à-ỵ]+(\s[A-Z][a-z à-ỵ]+)+$/
-    // let test4 = date.value.trim();
-    // let test5 = parseInt(test4.slice(0, 4));
-    // console.log(test5);
-    // if (test === "" || !test1.test(test)) {
-    //     inpmsnv.style.border = "1px solid red";
-    //     loimsnv.classList.add("loi");
-    // } else if (test2 === "" || !test3.test(test2)) {
-    //     inpname.style.border = "1px solid red";
-    //     loiname.classList.add("loi");
-    // } else if (test4 === "" || test5 > 2022) {
-    //     date.style.border = "1px solid red";
-    //     loidate.classList.add("loi");
-    // } else {
     let chucvu = "";
     for (let r of radios) {
         if (r.checked) {
@@ -132,7 +126,14 @@ plus.addEventListener("click", function(e) {
             }
         }
     }
-    if (chucvu === "") {
+    if (inpmsnv.value.trim() === "" || inp.test(inpmsnv.value.trim())) {
+        inpmsnv.style.border = "1px solid red";
+        loimsnv.classList.add("loi");
+        msnv();
+    } else if (!test3.test(inpname.value.trim()) || inpname.value.trim() === "") {
+        inpname.style.border = "1px solid red";
+        loiname.classList.add("loi");
+    } else if (chucvu === "") {
         alert("Loi cv");
     } else {
         let tr = document.createElement("tr");
@@ -155,9 +156,9 @@ plus.addEventListener("click", function(e) {
         inpmsnv.value = "";
         inpname.value = "";
         date.value = "";
-        for (let j of radios) {
-            j.disabled = true; // Vô hiệu hóa tất cả các radio button
-        }
+        // for (let j of radios) {
+        //     j.disabled = true; // Vô hiệu hóa tất cả các radio button
+        // }
         cb.value = "Bac1";
     }
 
@@ -172,9 +173,18 @@ modal.addEventListener("click", function(e) {
         date.value = "";
         cb.value = "Bac1";
         hes.value = "1.82";
-        for (let j of radios) {
-            j.disabled = true; // Vô hiệu hóa tất cả các radio button
-        }
+        // for (let j of radios) {
+        //     j.disabled = true; // Vô hiệu hóa tất cả các radio button
+        // }
         modal.classList.remove("modal2");
     }
 })
+class nhanvien {
+    constructor(stt, name, date, cv, cb) {
+        this.stt = stt;
+        this.name = name;
+        this.date = date;
+        this.cv = cv;
+        this.cb = cb;
+    }
+}
