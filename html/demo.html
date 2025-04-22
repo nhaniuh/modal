@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center align-items-center g-2">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="txtms" class="form-label">MSSV</label>
+                    <input type="text" class="form-control" name="" id="txtms" aria-describedby="helpId" placeholder="" />
+                    <!-- <span id="err" class="form-text text-muted">Help text</span> -->
+
+                </div>
+                <div class="mb-3">
+                    <label for="txtten" class="form-label">Ho tên</label>
+                    <input type="text" class="form-control" name="" id="txtten" aria-describedby="helpId" placeholder="" />
+                    <!-- <span id="err" class="form-text text-muted">Help text</span> -->
+
+                </div>
+                <div class="mb-3">
+                    <label for="txtlop" class="form-label">Lop</label>
+                    <input type="text" class="form-control" name="" id="txtlop" aria-describedby="helpId" placeholder="" />
+                    <!-- <span id="err" class="form-text text-muted">Help text</span> -->
+
+                    <div class="d-grid mt-2">
+                        <input type="button" value="Sign in" class="btn btn-primary" onclick="Singin()">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- <div class="col-6">Column</div> -->
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <div class="container">
+        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-primary" id="tblinfo">
+                        <thead>
+                            <tr>
+                                <th scope="col">MSSV</th>
+                                <th scope="col">Họ Tên</th>
+                                <th scope="col">Lớp</th>
+                                <th>STT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- <tr class="">
+                                <td id="mssv">Item</td>
+                                <td id="hoten">Item</td>
+                                <td id="lophoc">Item</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <input type="button" value="Test" onclick="test();">
+
+</body>
+<script>
+    function test() {
+        alert("AAA");
+
+    }
+
+    let count = 1;
+
+    function Singin() {
+        // lấy data lưu vào ô trong table
+
+        let ms = document.getElementById("txtms").value;
+        let ten = document.getElementById("txtten").value;
+        let lop = document.getElementById("txtlop").value;
+
+        let table = document.getElementById("tblinfo");
+
+        let newrow = table.insertRow();
+
+        let cell0 = newrow.insertCell(0);
+        let cell1 = newrow.insertCell(1);
+        let cell2 = newrow.insertCell(2);
+        let cell3 = newrow.insertCell(3);
+
+
+        cell0.innerHTML = count;
+        cell1.innerHTML = ms;
+        cell2.innerHTML = ten;
+        cell3.innerHTML = lop;
+
+        count++;
+
+
+        // document.getElementById("mssv").innerHTML = ms;
+        // document.getElementById("hoten").innerHTML = ten;
+        // document.getElementById("lophoc").innerHTML = lop;
+
+
+
+
+        // lấy data truyền sang trang html khác
+        // window.open("demodangnhap.html");
+        // localStorage.setItem("mssv", ms);
+        // localStorage.setItem("hoten", ten);
+        // localStorage.setItem("lop", lop);
+
+    }
+</script>
+
+</html>

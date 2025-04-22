@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+</head>
+<style>
+    [class*="col-"] {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        padding: 0;
+    }
+    
+    .row {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        var STT = 2;
+        $("#btnOpen").click(function(e) {
+            $("#modal").modal("show"); // hiển thị modal
+        });
+    });
+
+    function KiemtraMaNhanVien() {
+        let reg = /^(IUH-)[0-9]{9}$/
+        let txtMaNV = $("#txtMaNV").val();
+        if (reg.test(txtMaNV)) {
+            $("#tbMaNV").html("(*)");
+            return true;
+        } else {
+            $("#tbMaNV").html("Ma nhân viên phải có định dạng như sau:912345678");
+            return false;
+        }
+
+    }
+    $("#txtMaNV").blur(function(e) {
+        KiemtraMaNhanVien();
+    });
+
+    function kiemtraTenNhanVien() {
+        let reg = /^([A-Z][a-z]+)(\s[A-Z][a-z]+)*$/
+        let txtTenNV = $("#txtTenNV").val();
+        if (reg.test(txtTenNV)) {
+            $("#tbTenNV").html("(*)");
+            return true;
+        } else {
+            $("#tbMaNV").html("Tên nhân viên phải có định dạng như sau:Hoàng Minh Vương ");
+            return false;
+        }
+    }
+    $("#btnThem").click(function(e) {
+        if (KiemtraMaNhanVien() == false || kiemtraHoTenNhanVien() == false || KiemtraNgay() == false || KiemtraChucVu() == false) {
+            alert("Bạn chưa nhập đúng hay đủ thông tin!")
+        } else {
+            let txtMaNV = $("#txtMaNV").val();
+            let txtTenNV = $("#txtTenNV").val();
+            let txtDate = $("#txtDate").val();
+            let radChucVu = $("input[name='radChucVu']:checked").val();
+            let BacLuong = $("#slBacLuong option:checked").val();
+            let trNew = "<tr><td>" + stt + "</td><td>" + txtMaNV + "</td><td>" + txtTenNV + "</td><td>" + txtDate +
+                "</td><td>" + radChucVu + "</td><td>" + BacLuong + "</td></tr>"
+            $("#tblNV").append(trNew);
+            stt++;
+
+        }
+    });
+</script>
+
+
+<body>
+    <div class="container">
+        <div class="row border blockquote text-xl-center alert-primary justify-content-center ">
+            <div class="col-md-14">
+                <h1>Danh Sách Lương Nhân Viên</h1>
+            </div>
+
+        </div>
+        <nav class=" navbar navbar-expand-md ">
+            <ul class=" nav navbar-nav">
+                <li class="nav-item"><a href="#" class="nav-link">Trang Chủ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Thông tin </a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="btnOpen">Cập Nhật Lương</a></li>
+            </ul>
+        </nav>
+        <div class="row border blockquote">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="tblNV">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã nhân sự</th>
+                            <th>Họ tên</th>
+                            <th>Ngày hợp đồng</th>
+                            <th>Chức vụ </th>
+                            <th>Bậc lương</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th>1</th>
+                        <th>912345678</th>
+                        <th>Hoàng Minh Vương</th>
+                        <th>12/5/2000</th>
+                        <th>Nhân Viên</th>
+                        <th>1.86</th>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div class="row border blockquote alert-primary justify-content-center">
+            <div class="col-12 text-center">
+                <h4 class="text-info">Mã sinh viên: Họ tên sinh viên</h4>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container">
+        <div class="modal" id="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="text-center">THÔNG TIN SINH VIÊN</h2>
+                        <button type="button" class="clone" data-dismiss="modal" aria-label="close">
+                            <span></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <div class="form-group">
+                                <label for="txtMaNV">Mã Nhân Viên</label>
+                                <input type="text" name="txtMaNV" id="txtMaNV" placeholder="Ma Nhan su" style="width: 100%;">
+                                <span id="tbMaNV" class="text-danger">(*)</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtTenNV">Tên Nhân Viên</label>
+                                <input type="text" name="txtTenNV" id="txtTenNV" placeholder="Họ Tên" style="width: 100%;">
+                                <span id="tbTênNV" class="text-danger">(*)</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtDate">Ngày Vào Công Ty</label>
+                                <input type="Date" name="txtDate" id="txtDate" style="width: 100%;">
+                                <span id="tbDate" class="text-danger">(*)</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="radChucVu">Chức Vụ </label>
+                                <div>
+                                    <input type="radio" name="radChucVu" id="radCB" value="Cán bộ quản lý ">Cán bộ quản lý
+                                    <input type="radio" name="radChucVu" id="radNV" value="Nhân Viên ">Nhân Viên
+                                </div>
+                                <span id="tbChucVu" class="text-danger">(*)</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="BacLuong">Bậc Lương</label>
+                                <select name="BacLuong" id="slBacLuong" style="width: 100%;">
+                                    <option value="1.86">Bậc 1</option>
+                                    <option value="2.33">Bậc 2</option>
+                                    <option value="3.86">Bậc 3</option>
+                                    <option value="4.15">Bậc 4</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtTenNV">Hệ Số</label>
+                                <input type="button" name="txtHS" id="txtHS" style="width: 100%;">
+                            </div>
+                            <div class="form-group">
+                                <input type="button" value="Thêm" class="btn-info" style="border-radius:4px ;" id="btnThem">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <button type="button" class="btn-info" data-dismiss="modal" style="border-radius: 4px;">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

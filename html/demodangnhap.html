@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>THÔNG TIN DĂNG NHẬP</h1>
+    <h2>MSSV: <span id="ms"></span></h2>
+    <h2>Họ tên SV: <span id="ten"></span></h2>
+    <h2>Lớp học: <span id="lop"></span></h2>
+
+
+
+
+</body>
+<script>
+    document.getElementById("ms").innerHTML = localStorage.getItem("mssv");
+
+    document.getElementById("ten").innerHTML = localStorage.getItem("hoten");
+    document.getElementById("lop").innerHTML = localStorage.getItem("lop");
+</script>
+
+</html>
